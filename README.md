@@ -1,6 +1,11 @@
 # financeiro
 
-FIXME
+Projeto baseado no Livro da Casa do Código - Programação Funcional - Uma introdução em Clojure de Gregório Melo
+
+Features: 
+
+1. Inclusão de banco relacional - mysql
+2. Inclusão de novos endpoints: DELETE
 
 ## Prerequisites
 
