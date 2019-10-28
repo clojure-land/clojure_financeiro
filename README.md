@@ -7,6 +7,17 @@ Features:
 1. Inclusão de banco relacional - mysql
 2. Inclusão de novos endpoints: DELETE
 
+## Use
+
+1. Clojure 1.10.0
+    1.1. Compojure (https://github.com/weavejester/compojure) + Ring (https://github.com/ring-clojure)
+    1.2. Korma (https://github.com/korma/Korma)
+    1.3. Cheshire (https://github.com/dakrone/cheshire)
+    1.4. Clj-http (https://github.com/dakrone/clj-http)
+2. Docker
+3. Mysql
+
+
 ## Prerequisites
 
 You will need [Leiningen][] 2.0.0 or above installed.
@@ -77,6 +88,14 @@ $ curl -X POST -d '{"valor": 800, "tipo": "receita"}' -H "Content-Type: applicat
 
 $ curl -X POST -d '{"valor": 800, "tipo": "receita", "rotulos": ["salario", "empresa"]}' -H "Content-Type: application/json" localhost:3000/transacoes
 
+
+## Studying 
+
+http://www.4clojure.com/
+
+https://kimh.github.io/clojure-by-example/
+
+https://www.braveclojure.com/
 
 ## License
 
