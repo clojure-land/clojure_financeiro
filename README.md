@@ -10,10 +10,10 @@ Features:
 ## Use
 
 1. Clojure 1.10.0
-    1.1. Compojure (https://github.com/weavejester/compojure) + Ring (https://github.com/ring-clojure)
-    1.2. Korma (https://github.com/korma/Korma)
-    1.3. Cheshire (https://github.com/dakrone/cheshire)
-    1.4. Clj-http (https://github.com/dakrone/clj-http)
+        1.1. Compojure (https://github.com/weavejester/compojure) + Ring (https://github.com/ring-clojure)
+        1.2. Korma (https://github.com/korma/Korma)
+        1.3. Cheshire (https://github.com/dakrone/cheshire)
+        1.4. Clj-http (https://github.com/dakrone/clj-http)
 2. Docker
 3. Mysql
 

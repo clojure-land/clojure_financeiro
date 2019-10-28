@@ -13,10 +13,8 @@
                (:body response) => "Recurso não encontrado")))
 
 (facts "Saldo inicial é 0"
-       (against-background [(json/generate-string {:saldo 0})
-                           => "{\"saldo\":0}"
-                           (controller/saldo) => 0])
-
+       (against-background [(json/generate-string {:saldo 0}) => "{\"saldo\":0}"
+                            (controller/saldo) => 0])
        (let [response (app (mock/request :get "/saldo"))]
          (fact "o formato é 'application/json'"
                (get-in response [:headers "Content-Type"])
@@ -73,3 +71,10 @@
                (let [response (app (mock/request :get "/transacoes?rotulos=salário"))]
                                     (:status response) => 200
                                     (:body response) => (json/generate-string {:transacoes [salario]})))))
+
+(facts "Deletando uma transacao que não existe"
+       (let [response (app (mock/request :delete "/transacoes/0"))]
+         (fact "o código de erro é 404"
+               (:status response) => 404)
+         (fact "o texto do corpo é 'Elemento não encontrado'"
+               (:body response) => (json/generate-string {:mensagem "Elemento não encontrado"}))))

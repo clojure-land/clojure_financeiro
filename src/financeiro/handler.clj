@@ -33,13 +33,12 @@
                  (controller/find-all)
                  (controller/transacoes-com-filtro filtros))}))
  (DELETE "/transacoes/:id" [id]
-   (println (format "Parametros: id -> %s" id))
-   (if (controller/find-by-id id)
+   (if-not (empty? (controller/find-by-id id))
      (->
        (controller/delete-by-id id)
        (como-json 200)
        )
-     (como-json {:mensagem (format "Recurso não encontrado")} 404)))
+     (como-json {:mensagem (format "Elemento não encontrado")} 404)))
  (GET "/receitas" []
    (como-json {:transacoes (controller/transacoes-do-tipo "receita")}))
  (GET "/despesas" []
