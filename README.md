@@ -4,8 +4,13 @@ Projeto baseado no Livro da Casa do Código - Programação Funcional - Uma intr
 
 Features: 
 
+Versão: 0.1.0-SNAPSHOT
 1. Inclusão de banco relacional - mysql
 2. Inclusão de novos endpoints: DELETE
+
+Versão: 0.2.0-SNAPSHOT
+1. Inclusão da biblioteca compojure-api 
+2. Documentação com swagger
 
 ## Use
 
@@ -16,6 +21,7 @@ Features:
         1.4. Clj-http (https://github.com/dakrone/clj-http)
 2. Docker
 3. Mysql
+
 
 
 ## Prerequisites

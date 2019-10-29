@@ -1,5 +1,6 @@
 (ns financeiro.controller
-  (:require [financeiro.dao.transacoes :as dao]))
+  (:require [financeiro.dao.transacoes :as dao]
+            [schema.core :as schema]))
 
 (defn valida? [tipo valor]
   (and (number? valor)

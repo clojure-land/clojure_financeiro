@@ -1,4 +1,4 @@
-(defproject financeiro "0.1.0-SNAPSHOT"
+(defproject financeiro "0.2.0-SNAPSHOT"
   :description "FIXME: write description"
   :url "http://example.com/FIXME"
   :min-lein-version "2.0.0"
@@ -8,6 +8,8 @@
                  [ring/ring-defaults "0.3.2"]
                  [ring/ring-json "0.4.0"]
                  [clj-http "3.9.1"]
+                 [metosin/compojure-api "2.0.0-alpha30"]
+                 [metosin/spec-tools "0.9.2"]
                  [korma "0.4.3"]
                  [mysql/mysql-connector-java "5.1.6"]]
   :plugins [[lein-ring "0.12.5"]]
@@ -20,4 +22,4 @@
                         [ring/ring-jetty-adapter "1.7.1"]]
          :plugins [[lein-midje "3.2.1"]
                    [lein-cloverage "1.0.13"]]}}
-  :test-paths ["test/unitarios" "test/aceitacao"])
+  :test-paths ["test/utils", "test/unitarios" "test/aceitacao"])

@@ -16,18 +16,18 @@
      (http/post (endereco-para "/transacoes") (despesa 3000))
      (json/parse-string (conteudo "/saldo") true) => {:saldo 1000.0})
   (fact "Rejeita uma transação sem valor" :aceitacao
-        (let [resposta (http/post (endereco-para "/transacoes")
+        (let [response (http/post (endereco-para "/transacoes")
                                   (conteudo-como-json {:tipo "receita"}))]
-          (:status resposta) => 422))
+          (:status response) => 400))
   (fact "Rejeita uma transação com valor negativo" :aceitacao
-        (let [resposta (http/post (endereco-para "/transacoes")
+        (let [response (http/post (endereco-para "/transacoes")
                                   (receita -100))]
-          (:status resposta) => 422))
+          (:status response) => 400))
   (fact "Rejeita uma transação com valor que não é um número" :aceitacao
-        (let [resposta (http/post (endereco-para "/transacoes")
+        (let [response (http/post (endereco-para "/transacoes")
                                   (receita "mil"))]
-          (:status resposta) => 422))
+          (:status response) => 400))
   (fact "Rejeita uma transação sem tipo" :aceitacao
-        (let [resposta (http/post (endereco-para "/transacoes")
+        (let [response (http/post (endereco-para "/transacoes")
                                   (conteudo-como-json {:valor 70}))]
-          (:status resposta) => 422)))
+          (:status response) => 400)))

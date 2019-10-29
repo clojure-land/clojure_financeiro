@@ -1,6 +1,6 @@
 (ns financeiro.auxiliares
   (:require [ring.adapter.jetty :refer [run-jetty]]
-            [financeiro.handler :refer [app]]
+            [financeiro.handler :refer [app contexto]]
             [cheshire.core :as json]
             [clj-http.client :as http]))
 
@@ -16,7 +16,7 @@
 (def porta-padrao 3001)
 
 (defn endereco-para [rota] (str "http://localhost:"
-                                porta-padrao rota))
+                                porta-padrao contexto rota))
 
 (def requisicao-para (comp http/get endereco-para))
 

@@ -1,8 +1,7 @@
 (ns financeiro.dao.transacoes
   (:require [korma.db :refer :all]
             [korma.core :refer :all]
-            [financeiro.dao.db :refer :all]
-            ))
+            [financeiro.dao.db :refer :all]))
 
 (defentity rotulos)
 
@@ -30,9 +29,9 @@
 
 (defn create
   [rotulos-in tipo valor]
-  (let [id-auto (:generated_key (insert transacoes (values {:tipo tipo :valor valor})))]
+  (let [id-auto (insert transacoes (values {:tipo tipo :valor valor}))]
     (doseq [description rotulos-in] (insert rotulos
-                              (values {:description description :transacoes_id id-auto})))
+                              (values {:description description :transacoes_id (:generated_key id-auto)})))
     id-auto))
 
 (defn delete-by-id [id]
