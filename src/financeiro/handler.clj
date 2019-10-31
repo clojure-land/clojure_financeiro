@@ -30,10 +30,7 @@
           (if (controller/valida? tipo valor)
             (->> (controller/registrar rotulos tipo valor)
                 (created "/transacoes"))
-            (bad-request {:mensagem "Requisição inválida"})
-            )
-          )
-        )
+            (bad-request {:mensagem "Requisição inválida"}))))
         (GET "/transacoes" {filtros :params}
           (ok {:transacoes
                       (if (empty? filtros)
@@ -47,7 +44,4 @@
         (GET "/despesas" []
           (ok {:transacoes (controller/transacoes-do-tipo "despesa")}))
         (undocumented
-          (compojure.route/not-found (ok {:mensagem "Recurso não encontrado"})))
-      )
-    )
-  )
+          (compojure.route/not-found (ok {:mensagem "Recurso não encontrado"}))))))
