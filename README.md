@@ -1,4 +1,4 @@
-# financeiro
+# Projeto Financeiro
 
 Projeto baseado no Livro da Casa do Código - Programação Funcional - Uma introdução em Clojure de Gregório Melo
 
@@ -41,14 +41,14 @@ Projeto baseado no Livro da Casa do Código - Programação Funcional - Uma intr
 
 ## Links 
 
-Compojure (https://github.com/weavejester/compojure)
-Ring (https://github.com/ring-clojure)
-Korma (https://github.com/korma/Korma)
-Cheshire (https://github.com/dakrone/cheshire)
-Clj-http (https://github.com/dakrone/clj-http)
-Midje (https://github.com/marick/Midje)
-Compojure-api (https://github.com/metosin/compojure-api)
-Spec-tools (https://github.com/metosin/spec-tools)
+* Compojure (https://github.com/weavejester/compojure)
+* Ring (https://github.com/ring-clojure)
+* Korma (https://github.com/korma/Korma)
+* Cheshire (https://github.com/dakrone/cheshire)
+* Clj-http (https://github.com/dakrone/clj-http)
+* Midje (https://github.com/marick/Midje)
+* Compojure-api (https://github.com/metosin/compojure-api)
+* Spec-tools (https://github.com/metosin/spec-tools)
 
 
 ## Prerequisites
@@ -59,34 +59,38 @@ You will need [Leiningen][] 2.0.0 or above installed.
 
 Install Docker 
 
-https://docs.docker.com/install/
+[Docker]: https://docs.docker.com/install/
 
 Init Mysql in docker
 
-docker -d -p 3306:3306 --name clojure-mysql -e MYSQL_ROOT_PASSWORD=transacoes -e MYSQL_DATABASE=transacoes mysql:5.7.28
+    docker -d -p 3306:3306 --name clojure-mysql -e MYSQL_ROOT_PASSWORD=transacoes -e MYSQL_DATABASE=transacoes mysql:5.7.28
 
 After install, create tables:
 
 Inspect docker container: 
 
-$ docker exec -it a255b0f46647 bash 
+    docker exec -it a255b0f46647 bash 
 
 a255b0f46647 is ID the container, see at list containers by command: docker ps after run.
 
-After -> 
+-> 
 
-$ exec mysql -uroot -p transacoes
+    exec mysql -uroot -p transacoes
+
 - Set pass transacoes
 
 then -> 
 
+```sql
 CREATE TABLE transacoes (
   `id` bigint(20) NOT NULL AUTO_INCREMENT,
   `tipo` varchar(10) NOT NULL,
   `valor` DECIMAL(10,2) NOT NULL,
   PRIMARY KEY (`id`)
 );
+```
 
+```sql
 CREATE TABLE rotulos (
     `id` bigint(20) NOT NULL AUTO_INCREMENT,
     `description` varchar(100) NULL,
@@ -95,6 +99,7 @@ CREATE TABLE rotulos (
     FOREIGN KEY (transacoes_id)
     REFERENCES transacoes(id) ON DELETE CASCADE 
 );
+```
 
 ## Running
 
@@ -109,19 +114,19 @@ To start a web server for the application, run:
 
 ## Test with curl 
 
-$ curl http://localhost:3000/saldo
+    curl http://localhost:3000/saldo
 
-$ curl http://localhost:3000/transacoes
+    curl http://localhost:3000/transacoes
 
-$ curl http://localhost:3000/receitas
+    curl http://localhost:3000/receitas
 
-$ curl http://localhost:3000/despesas
+    curl http://localhost:3000/despesas
 
-$ curl http://localhost:3000/transacoes?rotulos=salario
+    curl http://localhost:3000/transacoes?rotulos=salario
 
-$ curl -X POST -d '{"valor": 800, "tipo": "receita"}' -H "Content-Type: application/json" http://localhost:3000/transacoes
+    curl -X POST -d '{"valor": 800, "tipo": "receita"}' -H "Content-Type: application/json" http://localhost:3000/transacoes
 
-$ curl -X POST -d '{"valor": 800, "tipo": "receita", "rotulos": ["salario", "empresa"]}' -H "Content-Type: application/json" http://localhost:3000/transacoes
+    curl -X POST -d '{"valor": 800, "tipo": "receita", "rotulos": ["salario", "empresa"]}' -H "Content-Type: application/json" http://localhost:3000/transacoes
 
 
 ## Studying 
