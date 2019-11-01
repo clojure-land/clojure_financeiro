@@ -39,4 +39,4 @@
                          :db-password    "transacoes"}
           :plugins      [[lein-midje "3.2.1"]
                          [lein-cloverage "1.0.13"]]}}
-  :test-paths ["test/utils", "test/unitarios" "test/aceitacao"])
+  :test-paths ["test/unitarios" "test/aceitacao"])

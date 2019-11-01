@@ -1,13 +1,15 @@
-(ns financeiro.handler-test
+(ns financeiro.routes.transacoes-test
   (:require [midje.sweet :refer :all]
             [ring.mock.request :as mock]
             [cheshire.core :as json]
             [financeiro.handler :refer :all]
-            [financeiro.util :refer :all]
-            [financeiro.controller :as controller]))
+            [financeiro.utils :refer :all]
+            [financeiro.controller.transacoes :as controller]))
+
+(def contexto-transacoes (str contexto "/transacoes"))
 
 (facts "Rota inválida não existe"
-       (let [response (app (mock/request :get (str contexto "/invalid")))
+       (let [response (app (mock/request :get (str contexto-transacoes "/invalid")))
              body     (parse-body (:body response))]
          (fact "o código de erro é 404"
                (:status response) => 404)
@@ -17,7 +19,7 @@
 (facts "Saldo inicial é 0"
        (against-background [(json/generate-string {:saldo 0}) => "{\"saldo\":0}"
                             (controller/saldo) => 0])
-       (let [response (app (mock/request :get (str contexto "/saldo")))
+       (let [response (app (mock/request :get (str contexto-transacoes "/saldo")))
              body     (parse-body (:body response))]
          (fact "o formato é 'application/json'"
                (get-in response [:headers "Content-Type"]) => "application/json; charset=utf-8")
@@ -28,7 +30,7 @@
 
 (facts "Registra uma receita no valor de 10"
        (against-background (controller/registrar [] "receita" 10) => 1)
-       (let [response (app (-> (mock/request :post (str contexto "/transacoes"))
+       (let [response (app (-> (mock/request :post (str contexto-transacoes "/"))
                                (mock/json-body {:rotulos [] :valor 10 :tipo "receita"})))]
          (fact "o status da resposta é 201"
                (:status response) => 201)
@@ -42,19 +44,19 @@
                             (controller/transacoes-do-tipo "despesa") => '({:id 2 :valor 89 :tipo "despesa"})
                             (controller/find-all) => '({:id 1 :valor 2000 :tipo "receita"} {:id 2 :valor 89 :tipo "despesa"})]
          (fact "Filtro por receita"
-               (let [response (app (mock/request :get (str contexto "/receitas")))
+               (let [response (app (mock/request :get (str contexto-transacoes "/receitas")))
                      body     (parse-body (:body response))]
                  (:status response) => 200
                  (json/generate-string body) => (json/generate-string
                                        {:transacoes '({:id 1 :valor 2000 :tipo "receita"})})))
          (fact "Filtro por despesa"
-               (let [response (app (mock/request :get (str contexto "/despesas")))
+               (let [response (app (mock/request :get (str contexto-transacoes "/despesas")))
                      body     (parse-body (:body response))]
                  (:status response) => 200
                  (json/generate-string body) => (json/generate-string
                                        {:transacoes '({:id 2 :valor 89 :tipo "despesa"})})))
          (fact "Sem filtro"
-               (let [response (app (mock/request :get (str contexto "/transacoes")))
+               (let [response (app (mock/request :get (str contexto-transacoes "/")))
                      body     (parse-body (:body response))]
                  (:status response) => 200
                  (json/generate-string body) => (json/generate-string
@@ -68,19 +70,19 @@
        (against-background [(controller/transacoes-com-filtro {:rotulos ["livro" "curso"]}) => [livro curso]
                             (controller/transacoes-com-filtro {:rotulos "salário"}) => [salario]]
          (fact "Filtro múltiplos rótulos"
-               (let [response (app (mock/request :get (str contexto "/transacoes?rotulos=livro&rotulos=curso")))
+               (let [response (app (mock/request :get (str contexto-transacoes "/?rotulos=livro&rotulos=curso")))
                      body     (parse-body (:body response))]
                                     (:status response) => 200
                                     (json/generate-string body) => (json/generate-string {:transacoes [livro curso]})))
          (fact "Filtro com único rótulo"
-               (let [response (app (mock/request :get (str contexto "/transacoes?rotulos=salário")))
+               (let [response (app (mock/request :get (str contexto-transacoes "/?rotulos=salário")))
                      body     (parse-body (:body response))]
                                     (:status response) => 200
                                     (json/generate-string body) => (json/generate-string {:transacoes [salario]})))))
 
 (facts "Deletando uma transacao que não existe"
        (against-background (controller/delete-by-id 0) => 0)
-       (let [response (app (mock/request :delete (str contexto "/transacoes/0")))
+       (let [response (app (mock/request :delete (str contexto-transacoes "/0")))
              body     (parse-body (:body response))]
          (fact "o código de erro é 200"
                (:status response) => 200)
@@ -89,7 +91,7 @@
 
 (facts "Deletando uma transacao que existe"
        (against-background (controller/delete-by-id 1) => 1)
-       (let [response (app (mock/request :delete (str contexto "/transacoes/1")))
+       (let [response (app (mock/request :delete (str contexto-transacoes "/1")))
              body     (parse-body (:body response))]
          (fact "o código de erro é 200"
                (:status response) => 200)

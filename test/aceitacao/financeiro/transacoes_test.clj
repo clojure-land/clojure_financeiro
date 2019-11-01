@@ -1,6 +1,6 @@
 (ns financeiro.transacoes-test
   (:require [midje.sweet :refer :all]
-            [financeiro.controller :refer :all]))
+            [financeiro.controller.transacoes :refer :all]))
 
 (fact "Uma transação com valor negativo não é válida"
       (valida? "receita" -10) => false)

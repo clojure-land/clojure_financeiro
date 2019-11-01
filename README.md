@@ -42,6 +42,20 @@ Projeto baseado no Livro da Casa do Código - Programação Funcional - Uma intr
     2. Docker
     3. MySql
 
+* 0.4.0
+    1. Clojure "1.10.0"
+        * Compojure "1.6.1"
+        * Ring "0.4.0"
+        * Cheshire "5.8.1"
+        * clj-http "3.9.1"
+        * Korma "0.4.3"
+        * mysql-connector-java "5.1.6"
+        * metosin/compojure-api "2.0.0-alpha30"
+        * metosin/spec-tools "0.9.2"
+        * environ "1.1.0"
+    2. Docker
+    3. MySql
+
 ## Release History
 
 * 0.1.0
@@ -54,6 +68,9 @@ Projeto baseado no Livro da Casa do Código - Programação Funcional - Uma intr
     * Inclusão da biblioteca Environ para ambientes por profiles;
     * Criação da base de teste para execução dos testes;
     * Inclusão do transactional do korma.
+* 0.4.0
+    * Inclusão da biblioteca Buddy para inclusão de segurança com JWT - Autenticação e Autorização;
+    * Criação das tabelas: usuarios e permissoes;
 
 ## Links 
 
@@ -66,6 +83,7 @@ Projeto baseado no Livro da Casa do Código - Programação Funcional - Uma intr
 * Compojure-api (https://github.com/metosin/compojure-api)
 * Spec-tools (https://github.com/metosin/spec-tools)
 * Environ (https://github.com/weavejester/environ)
+* Buddy (https://github.com/funcool/buddy)
 
 ## Prerequisites
 
@@ -107,7 +125,7 @@ CREATE TABLE transacoes (
 ```sql
 CREATE TABLE rotulos (
     `id` bigint(20) NOT NULL AUTO_INCREMENT,
-    `description` varchar(100) NULL,
+    `description` varchar(100) NOT NULL,
     `transacoes_id` bigint(20) NOT NULL,
     PRIMARY KEY (`id`),
     FOREIGN KEY (transacoes_id)
@@ -115,7 +133,43 @@ CREATE TABLE rotulos (
 );
 ```
 
--> Criando o bando de teste
+```sql
+CREATE TABLE usuarios (
+  `id` bigint(20) NOT NULL AUTO_INCREMENT,
+  `login` varchar(10) NOT NULL UNIQUE,
+  `senha` varchar(255) NOT NULL,
+  PRIMARY KEY (`id`)
+);
+```
+As permissões para este escopo poderão ser: SELECT / INSERT / UPDATE / DELETE
+
+```sql
+CREATE TABLE permissoes (
+    `id` bigint(20) NOT NULL AUTO_INCREMENT,
+    `name` varchar(10) NOT NULL,
+    `usuarios_id` bigint(20) NOT NULL,
+    PRIMARY KEY (`id`),
+    FOREIGN KEY (usuarios_id)
+    REFERENCES usuarios(id) ON DELETE CASCADE 
+);
+```
+
+Inserindo os usuários, sendo que o adm tem acesso total e o usuario tem apenas acesso de leitura
+
+```sql
+INSERT INTO `usuarios` (login,senha) VALUES ('adm','123456');
+SET @last_id_in_usuarios = LAST_INSERT_ID();
+INSERT INTO `permissoes` (name,usuarios_id) VALUES ('SELECT',@last_id_in_usuarios);
+INSERT INTO `permissoes` (name,usuarios_id) VALUES ('INSERT',@last_id_in_usuarios);
+INSERT INTO `permissoes` (name,usuarios_id) VALUES ('UPDATE',@last_id_in_usuarios);
+INSERT INTO `permissoes` (name,usuarios_id) VALUES ('DELETE',@last_id_in_usuarios);
+INSERT INTO `usuarios` (login,senha) VALUES ('usuario','123456');
+SET @last_id_in_usuarios = LAST_INSERT_ID();
+INSERT INTO `permissoes` (name,usuarios_id) VALUES ('SELECT',@last_id_in_usuarios);
+
+```
+
+-> Criando o banco de teste
 
     create database transacoes_test;
 

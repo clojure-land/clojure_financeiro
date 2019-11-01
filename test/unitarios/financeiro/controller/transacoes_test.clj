@@ -1,6 +1,6 @@
-(ns financeiro.controller-test
+(ns financeiro.controller.transacoes-test
   (:require [midje.sweet :refer :all]
-            [financeiro.controller :refer :all]))
+            [financeiro.controller.transacoes :refer :all]))
 
 (facts "Guarda uma transação na base de dados"
    (against-background [(before :facts (limpar))]

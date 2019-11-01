@@ -9,7 +9,6 @@
       <sourceFolder url="file://$MODULE_DIR$/dev-resources" isTestSource="false" />
       <sourceFolder url="file://$MODULE_DIR$/resources" isTestSource="false" />
       <sourceFolder url="file://$MODULE_DIR$/test/aceitacao" isTestSource="true" />
-      <sourceFolder url="file://$MODULE_DIR$/test/utils" isTestSource="true" />
       <sourceFolder url="file://$MODULE_DIR$/test/unitarios" isTestSource="true" />
       <excludeFolder url="file://$MODULE_DIR$/target" />
     </content>

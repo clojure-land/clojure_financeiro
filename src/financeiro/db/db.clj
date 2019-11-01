@@ -1,4 +1,4 @@
-(ns financeiro.dao.db
+(ns financeiro.db.db
   (:require [environ.core :refer [env]]
             [korma.db :refer :all]))
 
