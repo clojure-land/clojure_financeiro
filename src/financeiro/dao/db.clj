@@ -1,9 +1,11 @@
 (ns financeiro.dao.db
-  (:use korma.db))
+  (:require [environ.core :refer [env]]
+            [korma.db :refer :all]))
 
-(defdb db (mysql
-            { :classname "com.mysql.jdbc.Driver"
-             :subprotocol "mysql"
-             :subname "//localhost/transacoes"
-             :user "root"
-             :password "transacoes"}))
+(defdb db {:classname   (:db-classname env)
+             :subprotocol (:db-subprotocol env)
+             :subname     (:db-subname env)
+             :user        (:db-user env)
+             :make-pool?  (:db-make-pool? env)
+             :delimiters  (:db-delimiters env)
+             :password    (:db-password env)})

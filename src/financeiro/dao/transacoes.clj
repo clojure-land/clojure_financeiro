@@ -29,10 +29,11 @@
 
 (defn create
   [rotulos-in tipo valor]
-  (let [id-auto (insert transacoes (values {:tipo tipo :valor valor}))]
-    (doseq [description rotulos-in] (insert rotulos
-                              (values {:description description :transacoes_id (:generated_key id-auto)})))
-    id-auto))
+  (transaction
+    (let [id-auto (insert transacoes (values {:tipo tipo :valor valor}))]
+      (doseq [description rotulos-in] (insert rotulos
+                                (values {:description description :transacoes_id (:generated_key id-auto)})))
+      id-auto)))
 
 (defn delete-by-id [id]
   (delete transacoes

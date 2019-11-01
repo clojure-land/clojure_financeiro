@@ -27,6 +27,20 @@ Projeto baseado no Livro da Casa do Código - Programação Funcional - Uma intr
         * metosin/spec-tools "0.9.2"
     2. Docker
     3. MySql
+    
+* 0.3.0
+    1. Clojure "1.10.0"
+        * Compojure "1.6.1"
+        * Ring "0.4.0"
+        * Cheshire "5.8.1"
+        * clj-http "3.9.1"
+        * Korma "0.4.3"
+        * mysql-connector-java "5.1.6"
+        * metosin/compojure-api "2.0.0-alpha30"
+        * metosin/spec-tools "0.9.2"
+        * environ "1.1.0"
+    2. Docker
+    3. MySql
 
 ## Release History
 
@@ -37,7 +51,9 @@ Projeto baseado no Livro da Casa do Código - Programação Funcional - Uma intr
     * Inclusão da biblioteca compojure-api;
     * Inclusão do swagger.
 * 0.3.0
-    * em dev :)
+    * Inclusão da biblioteca Environ para ambientes por profiles;
+    * Criação da base de teste para execução dos testes;
+    * Inclusão do transactional do korma.
 
 ## Links 
 
@@ -49,7 +65,7 @@ Projeto baseado no Livro da Casa do Código - Programação Funcional - Uma intr
 * Midje (https://github.com/marick/Midje)
 * Compojure-api (https://github.com/metosin/compojure-api)
 * Spec-tools (https://github.com/metosin/spec-tools)
-
+* Environ (https://github.com/weavejester/environ)
 
 ## Prerequisites
 
@@ -57,7 +73,7 @@ You will need [Leiningen][] 2.0.0 or above installed.
 
 [leiningen]: https://github.com/technomancy/leiningen
 
-Install Docker 
+Install [Docker][] 
 
 [Docker]: https://docs.docker.com/install/
 
@@ -69,17 +85,15 @@ After install, create tables:
 
 Inspect docker container: 
 
-    docker exec -it a255b0f46647 bash 
+    docker exec -it clojure-mysql bash 
 
-a255b0f46647 is ID the container, see at list containers by command: docker ps after run.
-
--> 
+-> Entrando no console do mysql
 
     exec mysql -uroot -p transacoes
 
-- Set pass transacoes
+- Informando a senha: transacoes
 
-then -> 
+-> Criando as tabelas 
 
 ```sql
 CREATE TABLE transacoes (
@@ -101,16 +115,45 @@ CREATE TABLE rotulos (
 );
 ```
 
+-> Criando o bando de teste
+
+    create database transacoes_test;
+
+-> Acessando o banco de dados de teste
+
+    use transacoes_test;
+
+-> Criando as tabelas novamente, igual ao passo anterior no banco de teste    
+
+-> Saindo
+
+    exit
+
 ## Running
+
+*A partir da versão 0.3.0 é necessário inserir o profile de test, conforme exemplo abaixo*
+
+    lein with-profile test midje
 
 To test unit and accepts: 
 
-    leign midje 
+    leign midje
+   
+Somente testes de aceitação
+
+    leign midje :filters aceitacao 
+
+Somente testes de unitarios
+
+    leign midje :filters -aceitacao
+    
+Cobertura de teste
+
+    lein cloverage --runner :midje
 
 To start a web server for the application, run:
 
     lein ring server-headless
-
 
 ## Test with curl 
 
