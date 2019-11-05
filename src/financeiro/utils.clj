@@ -5,3 +5,8 @@
 
 (defn parse-body [body]
   (cheshire/parse-string (slurp body) true))
+
+(defn parse-int [s]
+  (if s
+    (Integer/parseInt (re-find #"-?\d+" s))
+    0))

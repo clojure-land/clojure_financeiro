@@ -12,7 +12,8 @@
                  [metosin/spec-tools "0.9.2"]
                  [korma "0.4.3"]
                  [mysql/mysql-connector-java "5.1.6"]
-                 [environ "1.1.0"]]
+                 [environ "1.1.0"]
+                 [buddy/buddy-auth "2.2.0"]]
   :plugins [[lein-ring "0.12.5"]
             [lein-environ "1.1.0"]]
   :ring {:handler financeiro.handler/app}
@@ -24,7 +25,8 @@
                          :db-user        "root"
                          :db-delimiters  "`"
                          :db-make-pool?  true
-                         :db-password    "transacoes"}}
+                         :db-password    "transacoes"
+                         :jwt-secret     "secret-123"}}
    :test {:dependencies [[javax.servlet/servlet-api "2.5"]
                          [ring/ring-mock "0.3.2"]
                          [midje "1.9.6"]
@@ -36,7 +38,8 @@
                          :db-user        "root"
                          :db-delimiters  "`"
                          :db-make-pool?  true
-                         :db-password    "transacoes"}
+                         :db-password    "transacoes"
+                         :jwt-secret     "teste-123"}
           :plugins      [[lein-midje "3.2.1"]
                          [lein-cloverage "1.0.13"]]}}
   :test-paths ["test/unitarios" "test/aceitacao"])

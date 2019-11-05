@@ -6,16 +6,18 @@
 (defentity permissoes)
 
 (defentity usuarios
-  (has-many permissoes))
+           (has-many permissoes))
 
 (defn find-by-login-e-senha
   [login senha]
   (select usuarios
           (with permissoes)
-          (where {:login login})
+          (where (and {:login login}
+                      {:senha senha}))
           (limit 1)))
 
-(defn find-by-permissao [id-usuario permissao]
+(defn find-by-id
+  [id]
   (select usuarios
-          (with permissoes)
-          (where {:id [in (subselect permissoes (fields :permissoes_id) (where {:name permissao}))]})))
+          (where {:id id})
+          (limit 1)))

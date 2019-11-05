@@ -18,5 +18,4 @@
     transacoes-routes
     seguranca-routes
     (undocumented
-      (compojure.route/not-found (ok {:mensagem "Recurso não encontrado"})))
-    ))
+      (compojure.route/not-found (ok {:mensagem "Recurso não encontrado"})))))

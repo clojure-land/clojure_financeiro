@@ -71,6 +71,8 @@ Projeto baseado no Livro da Casa do Código - Programação Funcional - Uma intr
 * 0.4.0
     * Inclusão da biblioteca Buddy para inclusão de segurança com JWT - Autenticação e Autorização;
     * Criação das tabelas: usuarios e permissoes;
+    * Versionamento dos endpoints;
+    * Reestruturação do projeto.
 
 ## Links 
 
@@ -225,6 +227,9 @@ To start a web server for the application, run:
 
     curl -X POST -d '{"valor": 800, "tipo": "receita", "rotulos": ["salario", "empresa"]}' -H "Content-Type: application/json" http://localhost:3000/transacoes
 
+## Test with swagger
+
+    http://localhost:3000     
 
 ## Studying 
 
