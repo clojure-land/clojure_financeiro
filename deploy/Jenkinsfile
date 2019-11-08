@@ -36,10 +36,8 @@ node {
     }
 
     stage(name: "Kubernetes/Deploy") {
-        withKubeConfig(credentialsId: 'kubeconfig') {
-            sh "kubectl replace -f deploy/deployment.yml --force"
-            sh "kubectl replace -f deploy/service.yml --force"
-        }
+        sh "kubectl replace -f deploy/deployment.yml --force"
+        sh "kubectl replace -f deploy/service.yml --force"
     }
 
 }
