@@ -22,7 +22,7 @@
    :dev  {:dependencies [[javax.servlet/servlet-api "2.5"]]
           :env          {:db-classname   "com.mysql.jdbc.Driver"
                          :db-subprotocol "mysql"
-                         :db-subname     "//localhost/transacoes"
+                         :db-subname     "//mysql/transacoes"
                          :db-user        "root"
                          :db-delimiters  "`"
                          :db-make-pool?  true
@@ -35,7 +35,7 @@
                          [ring/ring-jetty-adapter "1.7.1"]]
           :env          {:db-classname   "com.mysql.jdbc.Driver"
                          :db-subprotocol "mysql"
-                         :db-subname     "//localhost/transacoes_test"
+                         :db-subname     "//mysql/transacoes_test"
                          :db-user        "root"
                          :db-delimiters  "`"
                          :db-make-pool?  true

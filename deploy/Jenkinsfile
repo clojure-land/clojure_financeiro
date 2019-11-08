@@ -2,8 +2,6 @@
 
 node {
 
-    deleteDir()
-
     def lein = "lein"
 
     stage(name: "Git Checkout") {
