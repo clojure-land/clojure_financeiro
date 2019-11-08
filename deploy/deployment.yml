@@ -17,7 +17,7 @@ spec:
       containers:
         - image: luisalexandre/financeiro:latest
           name: financeiro
-          imagePull: Always
+          imagePullPolicy: Always
           ports:
             - containerPort: 3000
               name: financeiro
