@@ -117,7 +117,7 @@ Install [Docker][]
 
 Init Mysql in docker
 
-    docker -d -p 3306:3306 --name clojure-mysql -e MYSQL_ROOT_PASSWORD=transacoes -e MYSQL_DATABASE=transacoes mysql:5.7.28
+    docker run -d -p 3306:3306 --name clojure-mysql -e MYSQL_ROOT_PASSWORD=transacoes -e MYSQL_DATABASE=transacoes mysql:5.7.28
 
 After install, create tables:
 

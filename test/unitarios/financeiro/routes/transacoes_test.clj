@@ -9,11 +9,11 @@
 
 (def contexto-transacoes (str contexto "/transacoes"))
 
-(def playload-test "1:adm:SELECT/INSERT/UPDATE/DELETE:1573048101")
+(def playload-test "1:adm:SELECT/INSERT/UPDATE/DELETE:1573322476")
 
 (def senha-test "123456")
 
-(def token-sign-test "00a65fd45a6bb50351866ffee056eca675ab1a194627ad73b0837e8540bd99d3")
+(def token-sign-test "ce89c750512148002a4a03708351f720ec466910170eb64386fd9423926b0811")
 
 (def token-test (str playload-test "." token-sign-test))
 
