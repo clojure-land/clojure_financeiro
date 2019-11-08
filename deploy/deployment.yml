@@ -1,0 +1,23 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: financeiro
+  namespace: financeiro
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: financeiro
+  template:
+    metadata:
+      name: financeiro
+      labels:
+        app: financeiro
+    spec:
+      containers:
+        - image: luisalexandre/financeiro:latest
+          name: financeiro
+          imagePull: Always
+          ports:
+            - containerPort: 3000
+              name: financeiro

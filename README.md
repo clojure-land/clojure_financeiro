@@ -12,8 +12,8 @@ Projeto baseado no Livro da Casa do Código - Programação Funcional - Uma intr
         * clj-http "3.9.1"
         * Korma "0.4.3"
         * mysql-connector-java "5.1.6"
-    2. Docker
-    3. MySql
+    2. Docker "18.09.9"
+    3. MySql "5.7.28"
 
 * 0.2.0
     1. Clojure "1.10.0"
@@ -25,8 +25,8 @@ Projeto baseado no Livro da Casa do Código - Programação Funcional - Uma intr
         * mysql-connector-java "5.1.6"
         * metosin/compojure-api "2.0.0-alpha30"
         * metosin/spec-tools "0.9.2"
-    2. Docker
-    3. MySql
+    2. Docker "18.09.9"
+    3. MySql "5.7.28"
     
 * 0.3.0
     1. Clojure "1.10.0"
@@ -39,8 +39,8 @@ Projeto baseado no Livro da Casa do Código - Programação Funcional - Uma intr
         * metosin/compojure-api "2.0.0-alpha30"
         * metosin/spec-tools "0.9.2"
         * environ "1.1.0"
-    2. Docker
-    3. MySql
+    2. Docker "18.09.9"
+    3. MySql "5.7.28"
 
 * 0.4.0
     1. Clojure "1.10.0"
@@ -53,8 +53,24 @@ Projeto baseado no Livro da Casa do Código - Programação Funcional - Uma intr
         * metosin/compojure-api "2.0.0-alpha30"
         * metosin/spec-tools "0.9.2"
         * environ "1.1.0"
-    2. Docker
-    3. MySql
+    2. Docker "18.09.9"
+    3. MySql "5.7.28"
+    
+* 0.5.0
+    1. Clojure "1.10.0"
+        * Compojure "1.6.1"
+        * Ring "0.4.0"
+        * Cheshire "5.8.1"
+        * clj-http "3.9.1"
+        * Korma "0.4.3"
+        * mysql-connector-java "5.1.6"
+        * metosin/compojure-api "2.0.0-alpha30"
+        * metosin/spec-tools "0.9.2"
+        * environ "1.1.0"
+    2. Docker "18.09.9"
+    3. MySql "5.7.28"
+    4. Kubernetes "1.16.2" / Minikube "1.5.2" / VirtualBox "6" / Kubectl "1.16.2"
+    5. Jenkins "2.203-alpine"
 
 ## Release History
 
@@ -211,7 +227,7 @@ To start a web server for the application, run:
 
     lein ring server-headless
 
-## Test with curl 
+## Test with curl (Até a versão 0.3.0)
 
     curl http://localhost:3000/saldo
 
@@ -227,7 +243,7 @@ To start a web server for the application, run:
 
     curl -X POST -d '{"valor": 800, "tipo": "receita", "rotulos": ["salario", "empresa"]}' -H "Content-Type: application/json" http://localhost:3000/transacoes
 
-## Test with swagger
+## Test with swagger (Todas as versões)
 
     http://localhost:3000     
 
@@ -238,6 +254,10 @@ http://www.4clojure.com/
 https://kimh.github.io/clojure-by-example/
 
 https://www.braveclojure.com/
+
+https://hub.docker.com/_/clojure
+
+https://minikube.sigs.k8s.io/docs/reference/persistent_volumes/
 
 ## License
 

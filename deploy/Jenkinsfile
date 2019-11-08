@@ -1,0 +1,45 @@
+#!groovy
+
+node {
+
+    deleteDir()
+
+    def lein = "lein"
+
+    stage(name: "Git Checkout") {
+        checkout scm
+    }
+
+    stage(name: "Build/Back") {
+        sh "${lein} clean"
+        sh "${lein} ring uberjar"
+    }
+
+    stage(name: "Run/Test") {
+        sh "${lein} with-profile test midje"
+    }
+
+    stage(name: "Run/Cloverage/Test") {
+        sh "${lein} with-profile test  cloverage --runner :midje"
+    }
+
+    stage(name: "Docker/Back/Build"){
+        sh "docker build -t luisalexandre/financeiro:latest ."
+    }
+
+    stage(name: "Docker/Push") {
+        sh "docker push luisalexandre/financeiro:latest"
+    }
+
+    stage(name: "Docker/RMI") {
+      sh "docker rmi -f luisalexandre/financeiro:latest"
+    }
+
+    stage(name: "Kubernetes/Deploy") {
+        withKubeConfig(credentialsId: 'kubeconfig') {
+            sh "kubectl replace -f deploy/deployment.yml --force"
+            sh "kubectl replace -f deploy/service.yml --force"
+        }
+    }
+
+}

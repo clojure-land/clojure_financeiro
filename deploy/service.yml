@@ -1,0 +1,15 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: financeiro
+  namespace: financeiro
+  labels:
+    app: financeiro
+spec:
+  ports:
+    - port: 80
+      targetPort: 3000
+      nodePort: 32500
+  selector:
+    app: financeiro
+  type: NodePort

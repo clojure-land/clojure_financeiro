@@ -1,4 +1,4 @@
-(defproject financeiro "0.2.0-SNAPSHOT"
+(defproject financeiro "0.5.0-SNAPSHOT"
   :description "FIXME: write description"
   :url "http://example.com/FIXME"
   :min-lein-version "2.0.0"
@@ -18,7 +18,8 @@
             [lein-environ "1.1.0"]]
   :ring {:handler financeiro.handler/app}
   :profiles
-  {:dev  {:dependencies [[javax.servlet/servlet-api "2.5"]]
+  {:uberjar {:aot :all}
+   :dev  {:dependencies [[javax.servlet/servlet-api "2.5"]]
           :env          {:db-classname   "com.mysql.jdbc.Driver"
                          :db-subprotocol "mysql"
                          :db-subname     "//localhost/transacoes"
@@ -42,4 +43,5 @@
                          :jwt-secret     "teste-123"}
           :plugins      [[lein-midje "3.2.1"]
                          [lein-cloverage "1.0.13"]]}}
+  :uberjar-name "financeiro.jar"
   :test-paths ["test/unitarios" "test/aceitacao"])
