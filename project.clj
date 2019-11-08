@@ -35,7 +35,7 @@
                          [ring/ring-jetty-adapter "1.7.1"]]
           :env          {:db-classname   "com.mysql.jdbc.Driver"
                          :db-subprotocol "mysql"
-                         :db-subname     "//localhost/transacoes_test"
+                         :db-subname     "//mysql/transacoes_test" ;para uso local, use localhost invés de mysql
                          :db-user        "root"
                          :db-delimiters  "`"
                          :db-make-pool  true

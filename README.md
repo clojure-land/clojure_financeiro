@@ -261,6 +261,8 @@ https://hub.docker.com/_/clojure
 
 https://minikube.sigs.k8s.io/docs/reference/persistent_volumes/
 
+https://www.elastic.co/guide/en/elasticsearch/reference/current/vm-max-map-count.html
+
 ## License
 
 Copyright © 2019 FIXME
