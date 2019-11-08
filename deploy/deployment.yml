@@ -2,7 +2,7 @@ apiVersion: apps/v1
 kind: Deployment
 metadata:
   name: financeiro
-  namespace: financeiro
+  namespace: infra
 spec:
   replicas: 1
   selector:
@@ -18,6 +18,29 @@ spec:
         - image: luisalexandre/financeiro:latest
           name: financeiro
           imagePullPolicy: Always
+          env:
+            - name: jwt-secret
+              valueFrom:
+                secretKeyRef:
+                  name: financeiro
+                  key: jwtsecret
+            - name: db-classname
+              value: com.mysql.jdbc.Driver
+            - name: db-subprotocol
+              value: mysql
+            - name: db-subname
+              value: "//mysql/transacoes"
+            - name: db-user
+              value: root
+            - name: db-delimiters
+              value: "`"
+            - name: db-make-pool
+              value: "true"
+            - name: db-password
+              valueFrom:
+                secretKeyRef:
+                  name: financeiro
+                  key: password
           ports:
             - containerPort: 3000
               name: financeiro

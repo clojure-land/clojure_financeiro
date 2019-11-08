@@ -2,7 +2,7 @@ apiVersion: v1
 kind: Service
 metadata:
   name: financeiro
-  namespace: financeiro
+  namespace: infra
   labels:
     app: financeiro
 spec:

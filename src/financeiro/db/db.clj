@@ -6,6 +6,6 @@
              :subprotocol (:db-subprotocol env)
              :subname     (:db-subname env)
              :user        (:db-user env)
-             :make-pool?  (:db-make-pool? env)
+             :make-pool?  (:db-make-pool env)
              :delimiters  (:db-delimiters env)
              :password    (:db-password env)})
