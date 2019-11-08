@@ -15,7 +15,7 @@ spec:
         app: jenkins
     spec:
       containers:
-        - image: luisalexandre/jenkins-with-docker-and-kubectl
+        - image: luisalexandre/jenkins-with-docker-and-kubectl-and-leiningen
           name: jenkins
           securityContext:
             privileged: true

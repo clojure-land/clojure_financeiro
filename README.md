@@ -89,6 +89,8 @@ Projeto baseado no Livro da Casa do Código - Programação Funcional - Uma intr
     * Criação das tabelas: usuarios e permissoes;
     * Versionamento dos endpoints;
     * Reestruturação do projeto.
+* 0.5.0
+    * Inclusão de ambiente CI/CD para deploy continuo.
 
 ## Links 
 
