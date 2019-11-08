@@ -26,7 +26,9 @@ node {
     }
 
     stage(name: "Docker/Push") {
-        sh "docker push luisalexandre/financeiro:latest"
+        withDockerRegistry(credentialsId: 'dockerhub') {
+            sh "docker push luisalexandre/financeiro:latest"
+        }
     }
 
     stage(name: "Docker/RMI") {
