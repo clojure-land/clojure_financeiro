@@ -14,11 +14,11 @@ node {
     }
 
     stage(name: "Run/Test") {
-        sh "${lein} with-profile test midje"
+        sh "${lein} with-profile testci midje"
     }
 
     stage(name: "Run/Cloverage/Test") {
-        sh "${lein} with-profile test  cloverage --runner :midje"
+        sh "sonar-scanner"
     }
 
     stage(name: "Docker/Back/Build"){
@@ -36,8 +36,8 @@ node {
     }
 
     stage(name: "Kubernetes/Deploy") {
-        sh "kubectl replace -f deploy/deployment.yml --force"
-        sh "kubectl replace -f deploy/service.yml --force"
+        sh "kubectl replace -f deploy/financeiro/deployment.yml --force"
+        sh "kubectl replace -f deploy/financeiro/service.yml --force"
     }
 
 }
