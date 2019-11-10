@@ -15,7 +15,12 @@
                  [environ "1.1.0"]
                  [buddy/buddy-auth "2.2.0"]]
   :plugins [[lein-ring "0.12.5"]
-            [lein-environ "1.1.0"]]
+            [lein-environ "1.1.0"]
+            [lein-cloverage "1.0.13"]
+            [lein-ancient "0.6.15"]
+            [jonase/eastwood "0.3.3"]
+            [lein-kibit "0.1.6"]
+            [lein-nvd "0.6.0"]]
   :ring {:handler financeiro.handler/app}
   :profiles
   {:uberjar {:aot :all}
