@@ -17,15 +17,13 @@ node {
         sh "${lein} with-profile testci midje"
     }
 
-
-
     stage(name: "Run/Cloverage/Test") {
         sh "${lein} with-profile testci cloverage --codecov"
     }
 
     stage(name: "Inpect/Sonar") {
         withSonarQubeEnv('SonarQube') {
-            sh "/opt/sonar-scanner/bin/sonar-scanner -Dproject.settings=~/clojure_financeiro/sonar-project.properties"
+            sh "/opt/sonar-scanner/bin/sonar-scanner -Dsonar.projectKey=financeiro -Dsonar.sources=src,project.clj"
         }
     }
 
