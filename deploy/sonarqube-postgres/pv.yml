@@ -1,0 +1,14 @@
+kind: PersistentVolume
+apiVersion: v1
+metadata:
+  name: sonarqube-postgres
+  namespace: infra
+  labels:
+    type: local
+spec:
+  capacity:
+    storage: 4Gi
+  accessModes:
+    - ReadWriteOnce
+  hostPath:
+    path: "/data/sonarqube_postgres/"
