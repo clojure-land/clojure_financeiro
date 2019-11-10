@@ -25,7 +25,7 @@ node {
 
     stage(name: "Inpect/Sonar") {
         withSonarQubeEnv('SonarQube') {
-            sh "/opt/sonar-scanner/bin/sonar-scanner"
+            sh "/opt/sonar-scanner/bin/sonar-scanner -Dproject.settings=~/clojure_financeiro/sonar-project.properties"
         }
     }
 
