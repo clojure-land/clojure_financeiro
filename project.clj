@@ -16,6 +16,7 @@
                  [buddy/buddy-auth "2.2.0"]]
   :plugins [[lein-ring "0.12.5"]
             [lein-environ "1.1.0"]
+            [lein-midje "3.2.1"]
             [lein-cloverage "1.0.13"]
             [lein-ancient "0.6.15"]
             [jonase/eastwood "0.3.3"]
