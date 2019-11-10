@@ -23,7 +23,7 @@ node {
 
     stage(name: "Inpect/Sonar") {
         withSonarQubeEnv('SonarQube') {
-            sh "/opt/sonar-scanner/bin/sonar-scanner -Dsonar.projectKey=financeiro -Dsonar.sources=src,project.clj"
+            sh "/opt/sonar-scanner/bin/sonar-scanner -Dproject.settings=${env.WORKSPACE}/financeiro/sonar-project.properties"
         }
     }
 
