@@ -17,13 +17,15 @@ node {
         sh "${lein} with-profile testci midje"
     }
 
+
+
     stage(name: "Run/Cloverage/Test") {
         sh "${lein} with-profile testci cloverage --codecov"
     }
 
     stage(name: "Inpect/Sonar") {
         withSonarQubeEnv('SonarQube') {
-            sh "sonar-scanner"
+            sh "/opt/sonar-scanner/bin/sonar-scanner"
         }
     }
 
