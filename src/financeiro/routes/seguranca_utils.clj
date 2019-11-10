@@ -18,7 +18,7 @@
             (map :name)
             (cstr/join "/")
             ) ":"
-       (+ (quot (System/currentTimeMillis) 1000) (* 60 60 24 1)))) ; 1 Dia
+       (+ (quot (System/currentTimeMillis) 1000) (* 60 60 24 30)))) ; 30 Dias
 
 (defn sign [msg password]
   (-> (mac/hash msg {:key (str secret password) :alg :hmac+sha256})

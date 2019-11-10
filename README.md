@@ -87,7 +87,7 @@ Projeto baseado no Livro da Casa do Código - Programação Funcional - Uma intr
     3. MySql "5.7.28"
     4. Kubernetes "1.16.2" / Minikube "1.5.2" / VirtualBox "6" / Kubectl "1.16.2"
     5. Jenkins "2.203-alpine"
-    6. SonarQube ""
+    6. SonarQube "7.9.1"
 
 ## Release History
 
