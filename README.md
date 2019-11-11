@@ -282,7 +282,6 @@ https://www.elastic.co/guide/en/elasticsearch/reference/current/vm-max-map-count
 
 https://github.com/fsantiag/sonar-clojure
 
-
 ## License
 
 Copyright © 2019 FIXME
