@@ -17,6 +17,7 @@ spec:
       containers:
         - image: luisalexandre/sonarqube-with-pluggin-clojure:latest
           name: sonarqube
+          imagePullPolicy: Always
           env:
             - name: SONARQUBE_JDBC_PASSWORD
               valueFrom:
