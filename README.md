@@ -268,7 +268,7 @@ To start a web server for the application, run:
 
 ## Studying 
 
-http://www.4clojure.com/ 
+http://www.4clojure.com/
 
 https://kimh.github.io/clojure-by-example/
 
