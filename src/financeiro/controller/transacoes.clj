@@ -21,9 +21,7 @@
       (+ acumulado valor))))
 
 (defn saldo []
-  (->>
-    (db/find-all)
-    (reduce calcular 0)))
+  (reduce calcular 0 (db/find-all)))
 
 (defn transacoes-do-tipo [tipo]
   (db/find-by-tipo tipo))
@@ -33,7 +31,7 @@
 
 (defn transacoes-com-filtro [filtros]
   (let [rotulos (->> (:rotulos filtros)
-                     (conj [])
+                     (vector)
                      (flatten)
                      (set))]
     (db/find-by-rotulos rotulos)))

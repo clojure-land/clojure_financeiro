@@ -21,8 +21,7 @@
        (+ (quot (System/currentTimeMillis) 1000) (* 60 60 24 30)))) ; 30 Dias
 
 (defn sign [msg password]
-  (-> (mac/hash msg {:key (str secret password) :alg :hmac+sha256})
-      (codecs/bytes->hex)))
+  (codecs/bytes->hex (mac/hash msg {:key (str secret password), :alg :hmac+sha256})))
 
 (defn token-valido?
   [payload passw token-sign]
@@ -34,9 +33,8 @@
         usuario (zipmap [:id :login :permissoes :expiracao]
                         (cstr/split payload #":"))
         passw (controller/get-senha-by-id (:id usuario))]
-    (if (token-valido? payload passw token-sign)
-      usuario
-      nil)))
+    (when (token-valido? payload passw token-sign)
+      usuario)))
 
 (defn- parse-header [request token-name]
   (some->> (some-> (find-header request "authorization")
@@ -47,14 +45,13 @@
 (defn- not-expire?
   [usuario]
   (let [now (quot (System/currentTimeMillis) 1000)]
-    (if (< now (-> usuario :expiracao utils/parse-int))
-      usuario
-      nil)))
+    (when (< now (-> usuario :expiracao utils/parse-int))
+      usuario)))
 
 (defn- permissao?
   [permissoes permissoes-requeridas]
   (let [permissoes-split (cstr/split permissoes #"/")
-        matched-roles (clojure.set/intersection (into #{} permissoes-split) permissoes-requeridas)]
+        matched-roles (clojure.set/intersection (set permissoes-split) permissoes-requeridas)]
     (not (empty? matched-roles))))
 
 (defn- verifica-permissoes

@@ -13,12 +13,6 @@
   (select transacoes
           (with rotulos)))
 
-(defn find-by-id
-  [id]
-  (select transacoes
-          (where {:id id})
-          (limit 1)))
-
 (defn find-by-tipo
   [tipo]
   (select transacoes

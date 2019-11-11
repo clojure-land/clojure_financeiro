@@ -16,8 +16,7 @@
   ([credencial] (autenticacao (:login credencial) (:senha credencial)))
   ([login senha]
    (let [usuario (controller/find-by-login-e-senha login senha)]
-     (if (nil? usuario)
-       nil
+     (when-not (nil? usuario)
        (let [passw (:senha usuario)
              payload (codificar-dados usuario)
              token (str payload "." (sign payload passw))]

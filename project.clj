@@ -2,21 +2,21 @@
   :description "FIXME: write description"
   :url "http://example.com/FIXME"
   :min-lein-version "2.0.0"
-  :dependencies [[org.clojure/clojure "1.10.0"]
+  :dependencies [[org.clojure/clojure "1.10.1"]
                  [compojure "1.6.1"]
-                 [cheshire "5.8.1"]
+                 [cheshire "5.9.0"]
                  [ring/ring-defaults "0.3.2"]
-                 [ring/ring-json "0.4.0"]
-                 [clj-http "3.9.1"]
+                 [ring/ring-json "0.5.0"]
+                 [clj-http "3.10.0"]
                  [metosin/compojure-api "2.0.0-alpha30"]
-                 [metosin/spec-tools "0.9.2"]
+                 [metosin/spec-tools "0.10.0"]
                  [korma "0.4.3"]
-                 [mysql/mysql-connector-java "5.1.6"]
+                 [mysql/mysql-connector-java "8.0.18"]
                  [environ "1.1.0"]
                  [buddy/buddy-auth "2.2.0"]
                  [javax.servlet/servlet-api "2.5"]
-                 [ring/ring-mock "0.3.2"]
-                 [midje "1.9.6"]
+                 [ring/ring-mock "0.4.0"]
+                 [midje "1.9.9"]
                  [ring/ring-core "1.7.1"]
                  [ring/ring-jetty-adapter "1.7.1"]]
   :plugins [[lein-ring "0.12.5"]
@@ -40,8 +40,8 @@
                          :db-password    "transacoes"
                          :jwt-secret     "secret-123"}}
    :test {:dependencies [[javax.servlet/servlet-api "2.5"]
-                         [ring/ring-mock "0.3.2"]
-                         [midje "1.9.6"]
+                         [ring/ring-mock "0.4.0"]
+                         [midje "1.9.9"]
                          [ring/ring-core "1.7.1"]
                          [ring/ring-jetty-adapter "1.7.1"]]
           :env          {:db-classname   "com.mysql.jdbc.Driver"
@@ -59,8 +59,8 @@
                          [lein-kibit "0.1.6"]
                          [lein-nvd "0.6.0"]]}
    :testci {:dependencies [[javax.servlet/servlet-api "2.5"]
-                         [ring/ring-mock "0.3.2"]
-                         [midje "1.9.6"]
+                         [ring/ring-mock "0.4.0"]
+                         [midje "1.9.9"]
                          [ring/ring-core "1.7.1"]
                          [ring/ring-jetty-adapter "1.7.1"]]
           :env          {:db-classname   "com.mysql.jdbc.Driver"

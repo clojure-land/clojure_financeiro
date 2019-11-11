@@ -25,8 +25,7 @@
       :body [requisicao transacoes]
       (let [{:keys [rotulos tipo valor]} requisicao]
         (if (controller/valida? tipo valor)
-          (->> (controller/registrar rotulos tipo valor)
-               (created "/transacoes"))
+          (created "/transacoes" (controller/registrar rotulos tipo valor))
           (bad-request {:mensagem "Requisição inválida"}))))
     (GET "/" {filtros :params}
       :permissoes #{"SELECT"}
