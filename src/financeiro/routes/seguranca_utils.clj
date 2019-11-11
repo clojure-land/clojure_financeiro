@@ -52,7 +52,7 @@
   [permissoes permissoes-requeridas]
   (let [permissoes-split (cstr/split permissoes #"/")
         matched-roles (clojure.set/intersection (set permissoes-split) permissoes-requeridas)]
-    (not (empty? matched-roles))))
+    (seq matched-roles)))
 
 (defn- verifica-permissoes
   [handler permissoes-requeridas]
