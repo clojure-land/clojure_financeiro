@@ -14,19 +14,9 @@
                  [mysql/mysql-connector-java "8.0.18"]
                  [environ "1.1.0"]
                  [buddy/buddy-auth "2.2.0"]
-                 [javax.servlet/servlet-api "2.5"]
-                 [ring/ring-mock "0.4.0"]
-                 [midje "1.9.9"]
-                 [ring/ring-core "1.7.1"]
-                 [ring/ring-jetty-adapter "1.7.1"]]
+                 [ring/ring-mock "0.4.0"]]
   :plugins [[lein-ring "0.12.5"]
-            [lein-environ "1.1.0"]
-            [lein-midje "3.2.1"]
-            [lein-cloverage "1.0.13"]
-            [lein-ancient "0.6.15"]
-            [jonase/eastwood "0.3.3"]
-            [lein-kibit "0.1.6"]
-            [lein-nvd "0.6.0"]]
+            [lein-environ "1.1.0"]]
   :ring {:handler financeiro.handler/app}
   :profiles
   {:uberjar {:aot :all}

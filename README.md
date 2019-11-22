@@ -87,7 +87,7 @@ Projeto baseado no Livro da Casa do Código - Programação Funcional - Uma intr
     3. MySql "5.7.28"
     4. Kubernetes "1.16.2" / Minikube "1.5.2" / VirtualBox "6" / Kubectl "1.16.2"
     5. Jenkins "2.203-alpine"
-    6. SonarQube "7.9.1"
+    6. SonarQube "7.9.1" / Sonar-Scanner "4.2.0.1873"
 
 ## Release History
 
@@ -281,7 +281,6 @@ https://minikube.sigs.k8s.io/docs/reference/persistent_volumes/
 https://www.elastic.co/guide/en/elasticsearch/reference/current/vm-max-map-count.html
 
 https://github.com/fsantiag/sonar-clojure
-
 
 ## License
 
